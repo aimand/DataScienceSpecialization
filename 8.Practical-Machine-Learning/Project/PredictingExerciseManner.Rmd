@@ -1,0 +1,183 @@
+---
+title: "Practical Machine Learning"
+subtitle: "Predicting Exercise Manner"
+author: "Aiman D."
+date: "Sunday, November 22, 2015"
+output: html_document
+---
+
+## Introduction
+Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self-movement - a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it.
+
+## Goal
+In this project, our goal will be to use data from accelerometers on the belt, forearm, arm, and dumbbell of 6 participants to predict the manner in which they performed one set of 10 repetitions of the Unilateral Dumbbell Biceps Curl in five different fashions:  
+1.  Exactly according to the specification (Class A)  
+2.	Throwing the elbows to the front (Class B)  
+3.	Lifting the dumbbell only halfway (Class C)  
+4.	Lowering the dumbbell only halfway (Class D)  
+5.	Throwing the hips to the front (Class E)  
+
+The project aims to predict the manner in which the 6 participants did the exercise. This is the "classe" variable in the training set.  
+
+## Load Libraries
+First, we will load all necessary libraries that will be used in the project.
+
+```{r}
+library(caret)
+library(rpart)
+library(rpart.plot)
+library(randomForest)
+library(corrplot)
+
+# For reproduceability, we will set the seed globally
+set.seed(2345)
+```
+
+
+## Data 
+The project provides two datasets: The training data is available [here](https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv), while the test data is available [here](https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv).   
+Both datasets will be downloaded to the working folder. 
+
+## Data Download
+The data can be downloaded manually to the working directory or through code:
+
+```{r}
+# Set the working directory
+setwd("C:/Users/Aiman/Box Sync/NSU/DataScience/8.Practical Machine Learning/Project")
+
+trainingLoc <-"https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"
+testingLoc <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv"
+trainingSet <- "./Data/pml-training.csv"
+testingSet  <- "./Data/pml-testing.csv"
+
+# Create directory if it doesn't exist
+if (!file.exists("./Data"))
+{
+  dir.create("./Data")
+}
+
+# Download files if not doanloaded previously
+if (!file.exists(trainingSet)) 
+{
+  download.file(trainingLoc, destfile=trainingSet)
+}
+if (!file.exists(testingSet)) 
+{
+  download.file(testingLoc, destfile=testingSet)
+}
+```
+
+## Preparations
+Any collected data has to undergo some exploratory data analysis to check consistency and/or missing information.  
+So first step is to load the data and get its dimensions and peek into it. To conserve the report size, we will not  
+list the loaded datasets.  
+
+```{r}
+trainingRawData <- read.csv(trainingSet)
+dim(trainingRawData)
+testingRawData <- read.csv(testingSet)
+dim(testingRawData)
+```
+The training dataset contains 19622 rows and 160 variables, whereas the testing dataset contains 20 rows and 160 variables. The "classe" variable in the training set is the outcome to predict. 
+
+The data contains missing fields, fields filled with NA, and fields having #DIV/0!. There are variables that are almost completely empty except for few values, NA, or #DIV/0!. These variables can be removed.  
+
+The second step is to change missing values and #DIV/0! into NA, and then remove all columns (variables) that contain NA only and the variables that can not affect the prediction.
+
+```{r}
+# Reload the training data set changing missing values and #DIV/0! into NA
+trainingAllNA <- read.csv(trainingSet, na.strings=c("NA","#DIV/0!", ""))
+dim(trainingAllNA)
+
+# Reload the testing data set changing missing values and #DIV/0! into NA 
+testingAllNA <- read.csv(testingSet, na.strings=c("NA","#DIV/0!", ""))
+dim(testingAllNA)
+
+# Delete all NA columns
+trainingNoNA<-trainingAllNA[,colSums(is.na(trainingAllNA)) == 0]
+testingNoNA <-testingAllNA[,colSums(is.na(testingAllNA)) == 0]
+
+# Removing variables that will not affect predictions namely: 
+# First column (un-named), user_name, raw_timestamp_part_1, raw_timestamp_part_,2 cvtd_timestamp, new_window, and  num_window 
+# These are columns 1 thru 7
+trainingDS   <-trainingNoNA[,-c(1:7)]
+dim(trainingDS)
+
+testingDS <-testingNoNA[,-c(1:7)]
+dim(testingDS)
+```
+The variables of the training and test datasets are reduced to 53. 
+
+## Data Partition
+The refined test dataset is a small one that can only test the validity of the model, but can not validate the training predictions.  
+The refined training dataset will be divided into to sets one for training (75% of data) and one for validation (25% of data)
+
+```{r}
+partitionDS <- createDataPartition(y=trainingDS$classe, p=0.75, list=FALSE)
+trainingTrainDS <- trainingDS[partitionDS, ] 
+dim(trainingTrainDS)
+trainingValidDS <- trainingDS[-partitionDS, ]
+dim(trainingValidDS)
+```
+
+## Models
+We will fit two models: Decision Trees and Random Forest.
+We will compare them and pick the best to predict the test dataset.
+
+### Desicion Tree
+we first train the model using the trainingTrainDS.  
+
+```{r}
+modelDT <- rpart(classe ~ ., data=trainingTrainDS, method="class")
+
+# Predicting
+predictDT <- predict(modelDT, trainingValidDS, type = "class")
+
+# Show of the Decision Tree
+rpart.plot(modelDT, main="Decision Tree", extra=102, under=TRUE, faclen=0)
+```
+
+Now we show all results and statistics for Decision Tree.
+
+```{r}
+# Show all results and statistics
+confusionMatrix(predictDT, trainingValidDS$classe)
+```
+
+### Random Forest
+we first train the model using the trainingTrainDS.  
+
+```{r}
+modelRF <- randomForest(classe ~. , data=trainingTrainDS, method="class")
+# Predicting
+predictRF <- predict(modelRF, trainingValidDS, type = "class")
+```
+
+Now we show all results and statistics for Random Forest.
+
+```{r}
+# Show all results and statistics
+confusionMatrix(predictRF, trainingValidDS$classe)
+```
+
+### Comparison
+The accuracy of the Random Forest algorithm was 0.9943 (95% CI: (0.9918, 0.9962)), which was much higher than the accuracy of Decision Trees 0.7657 (95% CI: (0.7536, 0.7775)). Therefore, it will be used to predict the test dataset. 
+
+
+## Prediction of Test Dataset
+The prediction of the test dataset will utilize the Random Forest Model.
+
+```{r}
+# Predict outcome levels on the original Testing data set using Random Forest algorithm
+PredictExerciseManner <- predict(modelRF, testingDS, type="class")
+PredictExerciseManner
+```
+
+## References
+Kuhn, M. (2008), "Building predictive models in R using the caret package, " Journal of Statistical Software, (http://www.jstatsoft.org/v28/i05/).
+
+Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013. 
+
+
+
+
