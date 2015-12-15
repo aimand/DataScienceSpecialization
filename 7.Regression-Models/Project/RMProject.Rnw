@@ -1,0 +1,15 @@
+\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\textbf{Effect of Transmission Type on Car Fuel Consumption}
+Executive Summary
+Using the mtcars data set, the purpose of this analysis, is to study the effect of the transmission type on fuel consumption. The study is aiming to answer following two questions:
+.Is an automatic or manual transmission better for MPG?
+.Quantify the MPG difference between automatic and manual transmissions
+To answers these questions, we use exploratory data analysis and linear regression models.
+
+
+
+\end{document}
