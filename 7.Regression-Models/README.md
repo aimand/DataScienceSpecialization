@@ -1,1 +1,1 @@
-The repository of the Practical Machine Learning course!
+The repository of the Regression Models course!
