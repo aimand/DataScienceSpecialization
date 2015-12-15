@@ -1,1 +1,1 @@
-The repository of the Regression Models course!
+The repository of the Statistical Inference  course!
