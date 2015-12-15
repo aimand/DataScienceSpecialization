@@ -1,1 +1,400 @@
-<p>Regression Models</p>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Aiman D." />
+
+
+<title>Regression Models</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	color:#365F91;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria","serif";
+	color:#4F81BD;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:15.0pt;
+	margin-left:0in;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:15.0pt;
+	margin-left:0in;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{font-family:"Calibri","sans-serif";}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	line-height:115%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:22.0pt;
+font-family:"Times New Roman","serif"'>Regression Models: Course Project </span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><b><span
+style='font-size:18.0pt;font-family:"Times New Roman","serif"'>Effect of
+Transmission Type on Car Fuel Consumption</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><b><span
+style='font-size:16.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><b><span
+style='font-size:16.0pt;font-family:"Times New Roman","serif"'>Executive
+Summary</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>Using the mtcars data set, the
+purpose of this analysis, is to study the effect of the transmission type on
+fuel consumption. The study is aiming to answer following two questions:</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>• Is an automatic or manual
+transmission better for MPG?</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>• Quantify the MPG difference
+between automatic and manual transmissions</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>To answers these questions, we
+use exploratory data analysis and regression models.</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><b><span
+style='font-size:16.0pt;font-family:"Times New Roman","serif"'>Data Processing</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>In this step, we load and read
+the data and prepare it for analysis. Looking at the data headers, the field
+“am” is going to be the predictor variable that guides the study. This variable
+can be converted to a factor class with better descriptive labels: “Automatic”
+and “Manual”.</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=594 height=44 id="Picture 3"
+src="RegressionModelsProject_files/image001.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><b><span
+style='font-size:16.0pt;font-family:"Times New Roman","serif"'>Exploratory Data
+Analysis</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>To ensure that our regression
+model will be accurate, we will analyze and plot the “mpg” dependent variable
+to check its distribution.</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=587 height=108 id="Picture 1"
+src="RegressionModelsProject_files/image002.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-size:12.0pt;font-family:"Times New Roman","serif"'>See Fig. 1 in
+Appendix</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>The plots show that the
+distribution is acceptably clean or normal and there are no skewing outliers.</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>Now we analyze and compare the
+transmissions: Automatic vs Manual</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=568 height=73 id="Picture 5"
+src="RegressionModelsProject_files/image003.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-size:12.0pt;font-family:"Times New Roman","serif"'>See Fig. 2 in
+Appendix</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-size:12.0pt;font-family:"Times New Roman","serif"'>Manual
+transmissions show better utilization of fuel than automatic transmissions.</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><b><span
+style='font-size:16.0pt;font-family:"Times New Roman","serif"'>Hypothesis</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>In this section, we will throw a
+hypothesis but first we have to get the mean of each:</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=578 height=19 id="Picture 7"
+src="RegressionModelsProject_files/image004.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=552 height=43 id="Picture 8"
+src="RegressionModelsProject_files/image005.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>The difference is 7.245 MPGs in
+favor of manual transmissions. </span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>Does this difference stand to be
+statistically significant?</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>To test this, the alpha-value is
+set to 0.5, and a t-test is run to test the hypothesis:</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=558 height=40 id="Picture 9"
+src="RegressionModelsProject_files/image006.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=558 height=126 id="Picture 10"
+src="RegressionModelsProject_files/image007.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>The null hypothesis is rejected
+due to the p-value of 0.001374.</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><b><span
+style='font-size:16.0pt;font-family:"Times New Roman","serif"'>The Model</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>First, we create a correlation
+matrix for the mtcars dataset and look at the row for mpg to decide on the
+predictors to be used in the model.</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=599 height=27 id="Picture 11"
+src="RegressionModelsProject_files/image008.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=589 height=49 id="Picture 12"
+src="RegressionModelsProject_files/image009.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>It is determined that wt, cyl,
+disp, and hp are highly correlated with mpg, therefore they can be candidates
+for the model. It is also determined that cyl and disp are are highly
+correlated with each other so they were excluded from the model.</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><b><span
+style='font-size:16.0pt;font-family:"Times New Roman","serif"'>Regression
+Analysis</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>We first fit a simple linear
+regression for mpg on am.</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=602 height=32 id="Picture 14"
+src="RegressionModelsProject_files/image010.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=589 height=210 id="Picture 15"
+src="RegressionModelsProject_files/image011.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>Then, we do a multivariate linear
+regression fit for mpg on am, wt, and hp.</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=587 height=28 id="Picture 16"
+src="RegressionModelsProject_files/image012.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><img
+width=572 height=114 id="Picture 17"
+src="RegressionModelsProject_files/image013.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-family:"Times New Roman","serif"'>The null hypothesis is rejected
+due to the p-value of 3.745e-09.</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><span
+style='font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><span
+style='font-family:"Times New Roman","serif"'>Now we show the plots and summary</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><img width=558
+height=27 id="Picture 18" src="RegressionModelsProject_files/image014.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><span
+style='font-family:"Times New Roman","serif"'>See figure 3 in Appendix</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><img width=572
+height=24 id="Picture 20" src="RegressionModelsProject_files/image015.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><img width=573
+height=247 id="Picture 21" src="RegressionModelsProject_files/image016.jpg"></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><b><span
+style='font-size:16.0pt;line-height:150%;font-family:"Times New Roman","serif"'>Conclusion</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><span
+style='font-size:12.0pt;line-height:150%;font-family:"Times New Roman","serif"'>We
+conclude that cars fitted with manual transmissions have better fuel efficiency
+than cars with automatic transmissions.</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><span
+style='font-size:12.0pt;line-height:150%;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><b><span
+style='font-size:16.0pt;line-height:150%;font-family:"Times New Roman","serif"'>Appendix</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><span
+style='font-size:12.0pt;line-height:150%;font-family:"Times New Roman","serif"'><img
+width=489 height=313 id="Picture 22"
+src="RegressionModelsProject_files/image017.png"></span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+style='font-size:12.0pt;font-family:"Times New Roman","serif"'>Figure 1</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><span
+style='font-size:12.0pt;line-height:150%;font-family:"Times New Roman","serif"'>---------------------------------------------------------------------------------------------------</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><span
+style='font-size:12.0pt;line-height:150%;font-family:"Times New Roman","serif"'><img
+width=465 height=297 id="Picture 23"
+src="RegressionModelsProject_files/image018.jpg"></span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><span
+style='font-size:12.0pt;line-height:150%;font-family:"Times New Roman","serif"'>Figure
+2</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><span
+style='font-size:12.0pt;line-height:150%;font-family:"Times New Roman","serif"'>---------------------------------------------------------------------------------------------------</span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><span
+style='font-family:"Times New Roman","serif"'><img width=525 height=265
+id="Picture 19" src="RegressionModelsProject_files/image019.jpg"></span></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;line-height:150%'><span
+style='font-size:12.0pt;line-height:150%;font-family:"Times New Roman","serif"'>Figure
+3</span></p>
+
+</div>
+
+</body>
+
+</html>
+
