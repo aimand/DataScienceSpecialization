@@ -11,11 +11,13 @@ The Most Powerful is detrmined by the highest horsepower.
 The highest performance is the ration of horsepower to the weight of the car. The higher the ratio the higher the performance.
 
 # Project Locations
-Code Location of part 1 of the project: https://github.com/aimand/DataScienceSpecialization/9.Developing-Data-Products/Project
+Code Location of part 1 of the project: https://github.com/aimand/DataScienceSpecialization/tree/master/9.Developing-Data-Products/Project
 
-Published Version of part 1 of the project: https://aimand.shinyapps.io/Project
+Published Version of part 1 of the project:
+https://aimand.shinyapps.io/Project
 
-Presentation Location: http://aimand.github.io/9.Developing-Data-Products/Slidify/index
+Presentation Location:
+http://aimand.github.io/9.Developing-Data-Products/Slidify/index
 
 
 # To Run the App locally:
