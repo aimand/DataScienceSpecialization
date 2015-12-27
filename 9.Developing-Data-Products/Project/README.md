@@ -1,7 +1,7 @@
-Developing Data Products Project - Fastest, Most Powerful, and Hight Perfomance Car 
+## Developing Data Products Project - Fastest, Most Powerful, and Hight Perfomance Car 
 ===================================================================================
 
-# Fastest, Most Powerful, and Highest Perfomance Car  
+### Fastest, Most Powerful, and Highest Perfomance Car  
 
 This Shiny App is for suggesting the Fastest, Most Powerful, and/or Highest Perfomance Car around the block.
 It shows and compares based on the time to reach a 1/4 mile, weight and the horse power.
@@ -11,7 +11,7 @@ The Most Powerful is detrmined by the highest horsepower.
 The highest performance is the ration of horsepower to the weight of the car. The higher the ratio the higher the performance.
 
 
-# To Run the App:
+### To Run the App:
 1. Create a folder for example Project.
 2. Save the server.R and the ui.R in that folder.
 3. Open RStudio.
@@ -22,5 +22,5 @@ The highest performance is the ration of horsepower to the weight of the car. Th
 
 The mtcars datasets was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption, horse power, number of cylinders, 1/4 mile time, and other aspects of automobile design and performance for 32 automobiles (1973?74 models).
 
-## Source
+### Source
 Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391-411. 
