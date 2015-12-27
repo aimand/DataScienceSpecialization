@@ -7,7 +7,7 @@ This Shiny App is for suggesting the Fastest, Most Powerful, and/or Highest Perf
 It shows and compares based on the time to reach a 1/4 mile, weight and the horse power.
 
 The Fastest car is determined by the lowest time to cover a 1/4 mile.
-The Most Powerful is detrmined by the highest horsepower).
+The Most Powerful is detrmined by the highest horsepower.
 The highest performance is the ration of horsepower to the weight of the car. The higher the ratio the higher the performance.
 
 
