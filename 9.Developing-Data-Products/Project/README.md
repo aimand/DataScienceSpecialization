@@ -10,8 +10,15 @@ The Fastest car is determined by the lowest time to cover a 1/4 mile.
 The Most Powerful is detrmined by the highest horsepower.
 The highest performance is the ration of horsepower to the weight of the car. The higher the ratio the higher the performance.
 
+# Project Locations
+Code Location of part 1 of the project: https://github.com/aimand/DataScienceSpecialization/9.Developing-Data-Products/Project
 
-# To Run the App:
+Published Version of part 1 of the project: https://aimand.shinyapps.io/Project
+
+Presentation Location: http://aimand.github.io/9.Developing-Data-Products/Slidify/index
+
+
+# To Run the App locally:
 1. Create a folder for example Project.
 2. Save the server.R and the ui.R in that folder.
 3. Open RStudio.
