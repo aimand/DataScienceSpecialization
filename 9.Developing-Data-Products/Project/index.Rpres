@@ -1,0 +1,102 @@
+<style> 
+ 
+ .mystyle .reveal .state-background {
+  background: black;
+} 
+
+.mystyle .reveal h1,
+.mystyle .reveal h2,
+.mystyle .reveal p {
+  color: white;
+}
+
+.mystyle .reveal a, 
+.mystyle .reveal a:link,
+.mystyle .reveal a:visited,
+.mystyle .reveal a:hover,
+.mystyle .reveal a:active {
+  text-decoration: none;
+  color: yellow;
+}
+</style> 
+
+
+
+Developing Data Products
+========================================================
+title: false
+type: mystyle
+author: Aiman D.
+date: December 27th, 2015
+transition: zoom
+
+## Fastest, Most Powerful, and Highest Perfomance Car
+
+
+First Slide
+========================================================
+title: false
+type: mystyle
+
+## Introduction
+
+The presentation is part 2 of the project for Course Developing Data Products, which consists of two parts:  
+
+1. An application using Shiny  
+
+2. A presentation using slidify or RStudio Presenter
+
+Part 1 Code: 
+https://github.com/aimand/DataScienceSpecialization/tree/master/9.Developing-Data-Products/Project
+
+Part 1 Published: https://aimand.shinyapps.io/Project
+
+Presentation: 
+http://rpubs.com/aimand/138197
+
+
+Second Slide
+========================================================
+title: false
+type: mystyle
+
+## About the App  
+  
+This Shiny App displays the Fastest, Most Powerful, and/or Highest Perfomance Car within a dataset. It uses the time to reach a 1/4 mile, weight of car, and the horse power.
+
+The Fastest car is determined by the lowest time to cover a 1/4 mile.   
+The Most Powerful car is determined by the highest horsepower.  
+The highest performance is the ratio of horsepower to the weight of the car. The higher the ratio the higher the performance. 
+
+
+Third Slide
+=======================================================
+title: false
+type: mystyle
+
+## The Dataset
+
+The mtcars datasets was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption, horse power, cylinders, 1/4 mile time, and other aspects of automobile design and performance for 32 automobiles (1973-74 models). Below is a sample of data with columns projected and rows are restricted to horseppower >= 300.
+
+```{r}
+# using subset function to show the most used aspects
+ newdata <- subset(mtcars, hp >= 300, select=c(hp, qsec, wt)) 
+head(newdata)
+```
+
+Fourth Slide Slide With Plot
+========================================================
+title: false
+type: mystyle
+
+## Horsepower vs Time to cross 1/4 mile Plot
+The plots investigates the effect of hp on speed. Higher hp implies lesser time, i.e., the faster the car.
+
+```{r, echo=FALSE}
+library(car)
+attach(mtcars)
+# sort by hp
+ sorteddata <- mtcars[order(hp),] 
+newdata <- subset(sorteddata, hp >= 200, select=c(hp, qsec, wt))
+barplot(newdata$qsec, names.arg=newdata$hp, ylim=c(0,25), xlab="Horsepower", ylab="Time to 1/4 Mile", col=rainbow(12))
+```
