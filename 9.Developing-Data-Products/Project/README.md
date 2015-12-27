@@ -1,7 +1,5 @@
-Developing Data Products Project - Fastest, Most Powerful, and Highestt Performance Car 
-===================================================================================
-
-# Fastest, Most Powerful, and Highest Perfomance Car  
+Developing Data Products Project - Fastest, Most Powerful, and Highest Performance Car 
+======================================================================================
 
 This Shiny App is for suggesting the Fastest, Most Powerful, and/or Highest Performance Car around the block.
 It shows and compares based on the time to reach a 1/4 mile, weight and the horse power.
