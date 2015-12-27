@@ -20,9 +20,9 @@ The highest performance is the ration of horsepower to the weight of the car. Th
 5. runApp("Project", display.mode = "showcase")
 
 
-The mtcars datasets was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption, horse power, number of cylinders, 1/4 mile time, and other aspects of automobile design and performance for 32 automobiles (1973?74 models).
+The mtcars datasets was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption, horse power, number of cylinders, 1/4 mile time, and other aspects of automobile design and performance for 32 automobiles (1973-74 models).
 
 ## Source
-Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391?411.  
+Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391-411.  
 
 
